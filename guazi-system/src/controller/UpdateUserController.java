@@ -24,13 +24,7 @@ public class UpdateUserController extends HttpServlet {
         int idValue = Integer.parseInt(id);
         User user = new User(name,password,phone);
         int f = userService.updateUserById(idValue,user);
-        Message msg = null;
-        if(f == 1){
-            //修改成功
-            msg = new Message("ok");
-        }else{
-            msg = new Message("error");
-        }
+        Message msg = f == 1 ? new Message("ok") : new Message("error");
         response.getWriter().write(msg.toJSON());
     }
 
