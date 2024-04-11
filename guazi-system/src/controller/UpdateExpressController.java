@@ -25,13 +25,7 @@ public class UpdateExpressController extends HttpServlet {
         Express e = new Express(number,name,phone,company,"-1");
         BaseExpressService service = new ExpressService();
         boolean b = service.updateById(idValue,e);
-        Message msg = null;
-        if(b){
-            //修改成功
-            msg = new Message("ok");
-        }else{
-            msg = new Message("error");
-        }
+        Message msg = b ? new Message("ok") : new Message("error");
         response.getWriter().write(msg.toJSON());
 
     }
