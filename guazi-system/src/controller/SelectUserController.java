@@ -21,13 +21,7 @@ public class SelectUserController extends HttpServlet {
         int flagValue = Integer.parseInt(flag);
         BaseUserService userService = new UserService();
         User user = userService.findUserByPhoneNumber(phone,flagValue);
-        Message msg = null;
-        if(user != null){
-            //找到了一个快递员
-            msg = new Message("ok",user);
-        }else{
-            msg = new Message("error");
-        }
+        Message msg = user != null ? new Message("ok",user) : new Message("error");
         response.getWriter().write(msg.toJSON());
     }
 
